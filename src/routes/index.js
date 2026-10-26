@@ -2,5 +2,7 @@ const r = require('express').Router();
 
 r.use('/auth', require('./authRoutes'));
 r.use('/produk', require('./produkRoutes'));
+r.use('/supplier', require('./supplierRoutes'));
+r.use('/pengadaan', require('./pengadaanRoutes'));
 
 module.exports = r;
