@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 (async () => {
   try {
     await sequelize.authenticate();
-    await sequelize.sync({ alter: true });
+    await sequelize.sync();
     console.log('Database terhubung');
     app.listen(PORT, () => console.log(`Server jalan di port ${PORT}`));
   } catch (e) {
