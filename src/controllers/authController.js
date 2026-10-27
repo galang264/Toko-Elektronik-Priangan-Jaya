@@ -1,6 +1,9 @@
 const AuthService = require('../services/AuthService');
 
-exports.registrasi = async (req, res) => res.status(201).json(await AuthService.registrasi(req.body));
+exports.registrasi = async (req, res) => {
+  const user = await AuthService.registrasi(req.body);
+  res.status(201).json({ message: 'Registrasi Berhasil', user });
+};
 exports.login = async (req, res) => res.json(await AuthService.login(req.body));
 exports.lupaPassword = async (req, res) => res.json(await AuthService.lupaPassword(req.body.email));
 exports.resetPassword = async (req, res) => {

@@ -2,7 +2,8 @@ const nodemailer = require('nodemailer');
 
 let transporter = null;
 
-
+// Jika SMTP_HOST kosong (mode development), email tidak dikirim
+// melainkan dicetak ke console agar link reset tetap bisa dicoba.
 const getTransporter = () => {
   if (!process.env.SMTP_HOST) return null;
   if (!transporter) {

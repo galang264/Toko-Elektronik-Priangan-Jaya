@@ -1,4 +1,4 @@
-// FormLogin (boundary) -> Sistem (REST API /api/auth/*)
+// FormLogin / FormRegistrasi (boundary) -> Sistem (REST API /api/auth/*)
 const API = '/api/auth';
 
 function tampilkanPesan(teks, jenis) {
@@ -36,6 +36,13 @@ function pasangForm(id, handler) {
     }
   });
 }
+
+// MengisiFormRegistrasi() -> submitRegistrasi() -> validasiRegistrasi() -> cekUserSudahAda() -> simpanDataUser()
+pasangForm('formRegistrasi', async (data, form) => {
+  const { message } = await kirim('register', data);
+  tampilkanPesan(message, 'sukses');
+  form.reset();
+});
 
 // SubmitLogin() -> ProsesLogin() -> CekUser() -> alt hasil cek
 pasangForm('formLogin', async ({ username, password }) => {
