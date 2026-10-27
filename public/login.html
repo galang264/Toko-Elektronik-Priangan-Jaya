@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login - Toko Elektronik Priangan Jaya</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="card">
+    <h1>Login</h1>
+    <p class="sub">Toko Elektronik Priangan Jaya</p>
+    <form id="formLogin">
+      <label for="username">Username</label>
+      <input id="username" name="username" autocomplete="username" required>
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="current-password" required>
+      <button type="submit">Masuk</button>
+    </form>
+    <div id="pesan" class="pesan" hidden></div>
+    <a class="link" href="/lupa-password.html">Lupa Password?</a>
+  </main>
+  <script src="/js/auth.js"></script>
+</body>
+</html>
