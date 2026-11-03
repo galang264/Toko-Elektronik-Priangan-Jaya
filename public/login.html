@@ -3,24 +3,110 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Login - Toko Elektronik Priangan Jaya</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <meta name="theme-color" content="#111c33">
+  <title>Masuk — Toko Elektronik Priangan Jaya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/auth.css">
 </head>
 <body>
-  <main class="card">
-    <h1>Login</h1>
-    <p class="sub">Toko Elektronik Priangan Jaya</p>
-    <form id="formLogin">
-      <label for="username">Username</label>
-      <input id="username" name="username" autocomplete="username" required>
-      <label for="password">Password</label>
-      <input id="password" name="password" type="password" autocomplete="current-password" required>
-      <button type="submit">Masuk</button>
-    </form>
-    <div id="pesan" class="pesan" hidden></div>
-    <a class="link" href="/lupa-password.html">Lupa Password?</a>
-    <a class="link" href="/registrasi.html">Belum punya akun? Daftar</a>
+  <section class="auth-visual">
+    <a class="auth-brand" href="/login.html">
+      <span class="auth-brand-mark">
+        <svg viewBox="0 0 24 24">
+          <path d="M3 8.5 12 3l9 5.5v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <path d="M8 21v-7h8v7M7 9h.01M12 9h.01M17 9h.01"/>
+        </svg>
+      </span>
+      <span>
+        <strong>Priangan Jaya</strong>
+        <small>ELECTRONIC STORE</small>
+      </span>
+    </a>
+    <div class="visual-content">
+      <span class="visual-tag">SISTEM INFORMASI TOKO</span>
+      <h2>Kelola toko lebih mudah, dalam satu tempat.</h2>
+      <p>Platform pengelolaan toko elektronik untuk memantau produk, mengatur pengadaan, melayani transaksi, dan menyusun laporan secara terorganisir.</p>
+      <div class="visual-features">
+        <span>
+          <svg viewBox="0 0 24 24">
+            <path d="m5 12 4 4L19 6"/>
+          </svg>
+          Inventaris produk
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24">
+            <path d="m5 12 4 4L19 6"/>
+          </svg>
+          Transaksi penjualan
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24">
+            <path d="m5 12 4 4L19 6"/>
+          </svg>
+          Laporan toko
+        </span>
+      </div>
+    </div>
+    <div class="visual-foot">© 2026 Toko Elektronik Priangan Jaya</div>
+  </section>
+
+  <main class="auth-side">
+    <div class="auth-card">
+      <a class="auth-mobile-brand auth-brand" href="/login.html">
+        <span class="auth-brand-mark">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 8.5 12 3l9 5.5v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <path d="M8 21v-7h8v7M7 9h.01M12 9h.01M17 9h.01"/>
+          </svg>
+        </span>
+        <span>
+          <strong style="color:#202b3c">Priangan Jaya</strong>
+          <small style="color:#7b8798">ELECTRONIC STORE</small>
+        </span>
+      </a>
+      
+      <div class="auth-eyebrow">SELAMAT DATANG KEMBALI</div>
+      <h1>Masuk ke akun</h1>
+      <p class="auth-subtitle">Masukkan username dan password untuk melanjutkan ke sistem toko.</p>
+      
+      <form id="formLogin" class="auth-form">
+        <div class="auth-field">
+          <label for="username">Username</label>
+          <input id="username" name="username" autocomplete="username" placeholder="Masukkan username" required>
+        </div>
+        <div class="auth-field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Masukkan password" required>
+        </div>
+        <button class="auth-submit" type="submit">Masuk ke Dashboard</button>
+      </form>
+      
+      <div class="demo-access">
+        <strong>Akun demo untuk pratinjau</strong>
+        <div class="demo-access-actions">
+          <button type="button" data-demo-username="owner" data-demo-password="owner123">Owner</button>
+          <button type="button" data-demo-username="karyawan" data-demo-password="karyawan123">Karyawan</button>
+          <button type="button" data-demo-username="pelanggan" data-demo-password="pelanggan123">Pelanggan</button>
+        </div>
+        <small>Pilih salah satu untuk mengisi username dan password, lalu tekan tombol masuk.</small>
+      </div>
+      
+      <div id="pesan" class="auth-message" role="status" hidden></div>
+      
+      <div class="auth-links">
+        <a href="/lupa-password.html">Lupa password?</a>
+        <div class="auth-divider"></div>
+        <a href="/registrasi.html">Belum punya akun? Daftar sebagai pelanggan</a>
+      </div>
+      
+      <p class="auth-note">Dengan masuk, Anda menyetujui penggunaan sistem sesuai hak akses akun Anda.</p>
+    </div>
   </main>
+
+  <script src="/js/config.js"></script>
+  <script src="/js/demo-store.js"></script>
   <script src="/js/auth.js"></script>
 </body>
 </html>
