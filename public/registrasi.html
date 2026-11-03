@@ -3,27 +3,86 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Registrasi - Toko Elektronik Priangan Jaya</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <meta name="theme-color" content="#111c33">
+  <title>Daftar — Toko Elektronik Priangan Jaya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/auth.css">
 </head>
 <body>
-  <main class="card">
-    <h1>Registrasi</h1>
-    <p class="sub">Buat akun baru Toko Elektronik Priangan Jaya</p>
-    <form id="formRegistrasi">
-      <label for="nama">Nama Lengkap</label>
-      <input id="nama" name="nama" autocomplete="name" minlength="3" required>
-      <label for="email">Email</label>
-      <input id="email" name="email" type="email" autocomplete="email" required>
-      <label for="username">Username</label>
-      <input id="username" name="username" autocomplete="username" pattern="[a-zA-Z0-9_]{4,20}" title="4-20 karakter: huruf, angka, atau underscore" required>
-      <label for="password">Password</label>
-      <input id="password" name="password" type="password" autocomplete="new-password" minlength="6" required>
-      <button type="submit">Daftar</button>
-    </form>
-    <div id="pesan" class="pesan" hidden></div>
-    <a class="link" href="/login.html">Sudah punya akun? Login</a>
+  <section class="auth-visual">
+    <a class="auth-brand" href="/login.html">
+      <span class="auth-brand-mark">
+        <svg viewBox="0 0 24 24">
+          <path d="M3 8.5 12 3l9 5.5v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <path d="M8 21v-7h8v7M7 9h.01M12 9h.01M17 9h.01"/>
+        </svg>
+      </span>
+      <span>
+        <strong>Priangan Jaya</strong>
+        <small>ELECTRONIC STORE</small>
+      </span>
+    </a>
+    <div class="visual-content">
+      <span class="visual-tag">AKUN PELANGGAN</span>
+      <h2>Mulai pengalaman belanja yang lebih praktis.</h2>
+      <p>Buat akun pelanggan untuk mengakses layanan Toko Elektronik Priangan Jaya, memantau transaksi, dan mengajukan layanan garansi.</p>
+    </div>
+    <div class="visual-foot">© 2026 Toko Elektronik Priangan Jaya</div>
+  </section>
+
+  <main class="auth-side">
+    <div class="auth-card">
+      <a class="auth-mobile-brand auth-brand" href="/login.html">
+        <span class="auth-brand-mark">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 8.5 12 3l9 5.5v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <path d="M8 21v-7h8v7M7 9h.01M12 9h.01M17 9h.01"/>
+          </svg>
+        </span>
+        <span>
+          <strong style="color:#202b3c">Priangan Jaya</strong>
+          <small style="color:#7b8798">ELECTRONIC STORE</small>
+        </span>
+      </a>
+      
+      <div class="auth-eyebrow">BUAT AKUN BARU</div>
+      <h1>Daftar pelanggan</h1>
+      <p class="auth-subtitle">Lengkapi data berikut untuk membuat akun pelanggan.</p>
+      
+      <form id="formRegistrasi" class="auth-form">
+        <div class="auth-field">
+          <label for="nama">Nama lengkap</label>
+          <input id="nama" name="nama" autocomplete="name" placeholder="Nama sesuai identitas" minlength="3" required>
+        </div>
+        <div class="auth-field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="nama@email.com" required>
+        </div>
+        <div class="auth-field">
+          <label for="username">Username</label>
+          <input id="username" name="username" autocomplete="username" pattern="[a-zA-Z0-9_]{4,20}" title="4–20 karakter: huruf, angka, atau underscore" placeholder="4–20 karakter" required>
+        </div>
+        <div class="auth-field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="new-password" minlength="6" placeholder="Minimal 6 karakter" required>
+        </div>
+        <button class="auth-submit" type="submit">Buat akun</button>
+      </form>
+      
+      <div id="pesan" class="auth-message" role="status" hidden></div>
+      
+      <div class="auth-links">
+        <a href="/login.html">Sudah punya akun? Masuk</a>
+      </div>
+      
+      <p class="auth-note">Pendaftaran publik akan mendapatkan hak akses pelanggan.</p>
+    </div>
   </main>
+
+  <script src="/js/config.js"></script>
+  <script src="/js/demo-store.js"></script>
   <script src="/js/auth.js"></script>
 </body>
 </html>

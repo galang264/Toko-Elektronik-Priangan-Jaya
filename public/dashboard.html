@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111c33">
+  <title>Dashboard — Priangan Jaya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+<body class="app-body">
+  <div class="app-layout">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="/dashboard.html" aria-label="Priangan Jaya Dashboard">
+        <span class="brand-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8.5 12 3l9 5.5v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M8 21v-7h8v7M7 9h.01M12 9h.01M17 9h.01"/></svg></span>
+        <span class="brand-copy"><strong>Priangan Jaya</strong><small>Electronic Store</small></span>
+      </a>
+      <div class="sidebar-label">MENU UTAMA</div>
+      <nav class="nav-menu" id="mainNav" aria-label="Navigasi utama">
+        <a href="#dashboard" class="nav-link active" data-view="dashboard"><span class="nav-icon" data-icon="dashboard"></span><span>Ringkasan</span></a>
+        <a href="#produk" class="nav-link" data-view="produk"><span class="nav-icon" data-icon="box"></span><span>Produk</span></a>
+        <a href="#supplier" class="nav-link" data-view="supplier" data-roles="owner"><span class="nav-icon" data-icon="users"></span><span>Supplier</span></a>
+        <a href="#pengadaan" class="nav-link" data-view="pengadaan" data-roles="owner"><span class="nav-icon" data-icon="truck"></span><span>Pengadaan</span></a>
+        <a href="#kasir" class="nav-link" data-view="kasir" data-roles="karyawan"><span class="nav-icon" data-icon="shopping-cart"></span><span>Kasir</span></a>
+        <a href="#riwayat" class="nav-link" data-view="riwayat" data-roles="owner,karyawan"><span class="nav-icon" data-icon="receipt"></span><span>Riwayat transaksi</span></a>
+        <a href="#garansi" class="nav-link" data-view="garansi" data-roles="pelanggan,karyawan"><span class="nav-icon" data-icon="shield"></span><span>Garansi</span></a>
+        <a href="#laporan" class="nav-link" data-view="laporan" data-roles="owner"><span class="nav-icon" data-icon="chart"></span><span>Laporan</span></a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="help-card"><span class="help-icon" data-icon="headphones"></span><strong>Butuh bantuan?</strong><p>Hubungi administrator toko untuk bantuan penggunaan aplikasi.</p></div>
+        <button class="logout-button" id="logoutButton"><span data-icon="logout"></span>Keluar aplikasi</button>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-button mobile-menu-button" id="mobileMenuButton" aria-label="Buka menu"><span data-icon="menu"></span></button>
+          <div class="breadcrumb"><span>Priangan Jaya</span><span class="breadcrumb-separator">/</span><strong id="pageCrumb">Ringkasan</strong></div>
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-date" id="todayDate"></div><span class="demo-mode-pill" id="demoModePill">PRATINJAU DEMO</span>
+          <div class="user-menu">
+            <div class="avatar" id="userAvatar">PJ</div>
+            <div class="user-meta"><strong id="userName">Pengguna</strong><small id="userRole">Akun</small></div>
+          </div>
+        </div>
+      </header>
+      <section class="page-content" id="pageContent" aria-live="polite">
+        <div class="page-loading"><span class="spinner"></span><span>Memuat aplikasi...</span></div>
+      </section>
+      <footer class="app-footer"><span>© <span id="currentYear"></span> Toko Elektronik Priangan Jaya</span><span>Sistem Informasi Manajemen Toko</span></footer>
+    </main>
+  </div>
+
+  <dialog class="app-dialog" id="formDialog">
+    <div class="dialog-head"><div><span class="eyebrow" id="dialogEyebrow">FORM DATA</span><h2 id="dialogTitle">Tambah Data</h2></div><button class="icon-button" type="button" data-close-dialog aria-label="Tutup"><span data-icon="close"></span></button></div>
+    <form id="dialogForm" class="dialog-form"><div id="dialogFields"></div><div class="dialog-actions"><button class="button button-ghost" type="button" data-close-dialog>Batal</button><button class="button button-primary" type="submit" id="dialogSubmit">Simpan data</button></div></form>
+  </dialog>
+
+  <dialog class="app-dialog receipt-dialog" id="receiptDialog">
+    <div class="dialog-head no-print"><div><span class="eyebrow">TRANSAKSI SELESAI</span><h2>Nota pembayaran</h2></div><button class="icon-button" type="button" data-close-dialog aria-label="Tutup"><span data-icon="close"></span></button></div>
+    <div id="receiptContent" class="receipt-content"></div>
+    <div class="dialog-actions no-print"><button class="button button-ghost" type="button" data-close-dialog>Tutup</button><button class="button button-primary" type="button" id="printReceipt"><span data-icon="printer"></span> Cetak nota</button></div>
+  </dialog>
+
+  <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
+  <script src="/js/config.js"></script><script src="/js/demo-store.js"></script><script src="/js/dashboard.js"></script>
+</body>
+</html>
