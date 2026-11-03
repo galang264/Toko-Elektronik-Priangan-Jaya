@@ -1,2 +1,2 @@
-"# Toko-Elektronik-Priangan-Jaya" 
-Kelompok 6
+   # Toko-Elektronik-Priangan-Jaya
+   Kelompok 6

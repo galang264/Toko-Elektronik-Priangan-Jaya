@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registrasi - Toko Elektronik Priangan Jaya</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="card">
+    <h1>Registrasi</h1>
+    <p class="sub">Buat akun baru Toko Elektronik Priangan Jaya</p>
+    <form id="formRegistrasi">
+      <label for="nama">Nama Lengkap</label>
+      <input id="nama" name="nama" autocomplete="name" minlength="3" required>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" autocomplete="email" required>
+      <label for="username">Username</label>
+      <input id="username" name="username" autocomplete="username" pattern="[a-zA-Z0-9_]{4,20}" title="4-20 karakter: huruf, angka, atau underscore" required>
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" autocomplete="new-password" minlength="6" required>
+      <button type="submit">Daftar</button>
+    </form>
+    <div id="pesan" class="pesan" hidden></div>
+    <a class="link" href="/login.html">Sudah punya akun? Login</a>
+  </main>
+  <script src="/js/auth.js"></script>
+</body>
+</html>
