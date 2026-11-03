@@ -4,6 +4,7 @@ const HttpError = require('../utils/HttpError');
 const LAMA_GARANSI_HARI = 365;
 
 exports.ajukan = async ({ pelangganId, transaksiId }) => {
+  if (!transaksiId) throw new HttpError('transaksiId wajib diisi');
   const trx = await Transaksi.findByPk(transaksiId);
   if (!trx) throw new HttpError('Transaksi tidak ditemukan', 404);
   if (trx.pelangganId !== pelangganId) throw new HttpError('Bukan transaksi Anda', 403);
@@ -28,3 +29,8 @@ exports.klaim = async (id) => {
   }
   return g.update({ status: 'diklaim' });
 };
+
+exports.daftar = (user) => Garansi.findAll({
+  where: user.role === 'pelanggan' ? { pelangganId: user.id } : {},
+  order: [['ID_garansi', 'DESC']],
+});

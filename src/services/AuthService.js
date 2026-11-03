@@ -62,6 +62,7 @@ exports.lupaPassword = async (email) => {
 };
 
 exports.resetPassword = async (token, passwordBaru) => {
+  if (typeof passwordBaru !== 'string' || passwordBaru.length < 6) throw new HttpError('Password minimal 6 karakter');
   const user = await User.findOne({ where: { resetToken: token, resetExpire: { [Op.gt]: new Date() } } });
   if (!user) throw new HttpError('Token tidak valid / kadaluarsa');
   await user.update({ password: await bcrypt.hash(passwordBaru, 10), resetToken: null, resetExpire: null });
