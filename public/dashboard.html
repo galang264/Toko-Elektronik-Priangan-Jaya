@@ -18,31 +18,6 @@
         <span class="brand-copy"><strong>Priangan Jaya</strong><small>Electronic Store</small></span>
       </a>
       <div class="sidebar-label">MENU UTAMA</div>
-      <nav class="nav-menu" id="mainNav" aria-label="Navigasi utama">
-        <!-- Ringkasan: Semua role -->
-        <a href="#dashboard" class="nav-link active" data-view="dashboard" data-roles="pelanggan,karyawan,owner"><span class="nav-icon" data-icon="dashboard"></span><span>Ringkasan</span></a>
-        
-        <!-- Produk (termasuk Tambah Produk): Semua role -->
-        <a href="#produk" class="nav-link" data-view="produk" data-roles="pelanggan,karyawan,owner"><span class="nav-icon" data-icon="box"></span><span>Produk</span></a>
-        
-        <!-- Supplier (termasuk Tambah Supplier): Owner saja -->
-        <a href="#supplier" class="nav-link" data-view="supplier" data-roles="owner"><span class="nav-icon" data-icon="users"></span><span>Supplier</span></a>
-        
-        <!-- Pengadaan: Owner saja -->
-        <a href="#pengadaan" class="nav-link" data-view="pengadaan" data-roles="owner"><span class="nav-icon" data-icon="truck"></span><span>Pengadaan</span></a>
-        
-        <!-- Kasir: Karyawan saja -->
-        <a href="#kasir" class="nav-link" data-view="kasir" data-roles="karyawan"><span class="nav-icon" data-icon="shopping-cart"></span><span>Kasir</span></a>
-        
-        <!-- Riwayat transaksi: Karyawan saja -->
-        <a href="#riwayat" class="nav-link" data-view="riwayat" data-roles="karyawan"><span class="nav-icon" data-icon="receipt"></span><span>Riwayat transaksi</span></a>
-        
-        <!-- Garansi (termasuk Proses Garansi): Pelanggan & Karyawan -->
-        <a href="#garansi" class="nav-link" data-view="garansi" data-roles="pelanggan,karyawan"><span class="nav-icon" data-icon="shield"></span><span>Garansi</span></a>
-        
-        <!-- Laporan (termasuk Buat Laporan): Owner saja -->
-        <a href="#laporan" class="nav-link" data-view="laporan" data-roles="owner"><span class="nav-icon" data-icon="chart"></span><span>Laporan</span></a>
-      </nav>
       <div class="sidebar-bottom">
         <div class="help-card"><span class="help-icon" data-icon="headphones"></span><strong>Butuh bantuan?</strong><p>Hubungi administrator toko untuk bantuan penggunaan aplikasi.</p></div>
         <button class="logout-button" id="logoutButton"><span data-icon="logout"></span>Keluar aplikasi</button>
@@ -56,6 +31,7 @@
           <div class="breadcrumb"><span>Priangan Jaya</span><span class="breadcrumb-separator">/</span><strong id="pageCrumb">Ringkasan</strong></div>
         </div>
         <div class="topbar-right">
+          <div class="topbar-date" id="todayDate"></div><span class="demo-mode-pill" id="demoModePill">PRATINJAU DEMO</span>
           <div class="user-menu">
             <div class="avatar" id="userAvatar">PJ</div>
             <div class="user-meta"><strong id="userName">Pengguna</strong><small id="userRole">Akun</small></div>
