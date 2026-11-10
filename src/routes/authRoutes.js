@@ -5,11 +5,6 @@ r.post('/register', c.registrasi);
 r.post('/login', c.login);
 r.post('/lupa-password', c.lupaPassword);
 r.post('/reset-password', c.resetPassword);
+r.post('/logout', c.logout);
 
 module.exports = r;
-
-// Impor controller di atas jika belum
-const authController = require('../controllers/authController');
-
-// Tambahkan rute POST
-router.post('/logout', authController.logout);
