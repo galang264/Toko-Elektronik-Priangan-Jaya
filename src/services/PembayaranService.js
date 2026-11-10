@@ -2,6 +2,10 @@ const { sequelize, Transaksi, Pembayaran } = require('../models');
 const HttpError = require('../utils/HttpError');
 
 exports.proses = async ({ transaksiId, metode_pembayaran, jumlah_bayar }) => {
+  if (!transaksiId) throw new HttpError('transaksiId wajib diisi');
+  if (!metode_pembayaran) throw new HttpError('metode_pembayaran wajib diisi');
+  if (typeof jumlah_bayar !== 'number') throw new HttpError('jumlah_bayar harus angka');
+
   return sequelize.transaction(async (t) => {
     const trx = await Transaksi.findByPk(transaksiId, { transaction: t, lock: t.LOCK.UPDATE });
     if (!trx) throw new HttpError('Transaksi tidak ditemukan', 404);

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Toko Elektronik Priangan Jaya</title>
+    <!-- Tailwind CSS & FontAwesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body class="bg-slate-50 font-sans antialiased text-slate-800">
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white border-r border-slate-200 flex flex-col transition-all duration-300">
+            <div class="h-16 flex items-center px-6 border-b border-slate-200">
+                <i class="fa-solid fa-bolt text-blue-600 text-xl mr-2"></i>
+                <h1 class="text-lg font-bold text-slate-900">Priangan Jaya</h1>
+            </div>
+            <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1" id="sidebar-menu">
+                <!-- Menu akan di-render oleh JavaScript berdasarkan Role -->
+            </nav>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div class="flex-1 flex flex-col">
+            <!-- Top Navbar -->
+            <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6">
+                <h2 class="text-xl font-semibold text-slate-800" id="page-title">Dashboard</h2>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="text-right hidden sm:block">
+                        <p class="text-sm font-medium text-slate-900" id="user-name">Nama Pengguna</p>
+                        <p class="text-xs text-slate-500 capitalize" id="user-role">Role</p>
+                    </div>
+                    <!-- Tombol Logout -->
+                    <button id="btn-logout" class="flex items-center text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 px-3 py-2 rounded-lg transition-colors">
+                        <i class="fa-solid fa-right-from-bracket mr-2"></i> Logout
+                    </button>
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-slate-50 p-6">
+                <div id="main-content" class="bg-white rounded-xl shadow-sm border border-slate-100 p-6 min-h-[400px]">
+                    <h3 class="text-lg font-semibold mb-2">Selamat Datang!</h3>
+                    <p class="text-slate-600">Pilih menu di samping untuk memulai aktivitas Anda.</p>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>

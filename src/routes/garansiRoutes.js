@@ -4,6 +4,7 @@ const auth = require('../middlewares/auth');
 const allow = require('../middlewares/role');
 
 r.use(auth);
+r.get('/', allow('pelanggan', 'karyawan', 'owner'), c.daftar);
 r.post('/', allow('pelanggan'), c.ajukan);
 r.patch('/:id/klaim', allow('karyawan'), c.klaim);
 

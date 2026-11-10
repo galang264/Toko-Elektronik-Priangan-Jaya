@@ -6,11 +6,34 @@ const { User } = require('../models');
 const HttpError = require('../utils/HttpError');
 const { kirimEmail } = require('../utils/mailer');
 
-exports.registrasi = async ({ nama, email, username, password, role }) => {
-  if (!password) throw new HttpError('Password wajib diisi');
-  const hash = await bcrypt.hash(password, 10);
-  const user = await User.create({ nama, email, username, password: hash, role });
-  return { ID_user: user.ID_user, nama: user.nama, username: user.username, role: user.role };
+// validasiRegistrasi(): cek format semua field
+const formatValid = ({ nama, email, username, password }) =>
+  typeof nama === 'string' && nama.trim().length >= 3 &&
+  typeof email === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) &&
+  typeof username === 'string' && /^[a-zA-Z0-9_]{4,20}$/.test(username) &&
+  typeof password === 'string' && password.length >= 6;
+
+exports.registrasi = async (data) => {
+  if (!formatValid(data)) throw new HttpError('Format Tidak Valid', 400);
+  const { nama, email, username, password } = data;
+
+  // cekUserSudahAda()
+  const ada = await User.findOne({ where: { [Op.or]: [{ username }, { email }] } });
+  if (ada) throw new HttpError('User sudah terdaftar', 409);
+
+  // simpanDataUser()
+  try {
+    const user = await User.create({
+      nama: nama.trim(), email, username,
+      password: await bcrypt.hash(password, 10),
+      role: 'pelanggan', // registrasi publik selalu menjadi pelanggan
+    });
+    return { ID_user: user.ID_user, nama: user.nama, username: user.username, role: user.role };
+  } catch (e) {
+    if (e.name === 'SequelizeUniqueConstraintError') throw new HttpError('User sudah terdaftar', 409);
+    console.error(e.message);
+    throw new HttpError('Tidak Dapat Menyimpan Data', 500);
+  }
 };
 
 exports.login = async ({ username, password }) => {
@@ -39,6 +62,7 @@ exports.lupaPassword = async (email) => {
 };
 
 exports.resetPassword = async (token, passwordBaru) => {
+  if (typeof passwordBaru !== 'string' || passwordBaru.length < 6) throw new HttpError('Password minimal 6 karakter');
   const user = await User.findOne({ where: { resetToken: token, resetExpire: { [Op.gt]: new Date() } } });
   if (!user) throw new HttpError('Token tidak valid / kadaluarsa');
   await user.update({ password: await bcrypt.hash(passwordBaru, 10), resetToken: null, resetExpire: null });
