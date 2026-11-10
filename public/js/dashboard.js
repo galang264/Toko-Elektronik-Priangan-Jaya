@@ -510,3 +510,59 @@ function setupShell() {
 
 setupShell();
 showView((window.location.hash || '#dashboard').slice(1));
+
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. Ambil data sesi pengguna (Pastikan sesuai dengan cara Anda menyimpan data saat login)
+    const user = JSON.parse(localStorage.getItem('user')) || { nama: "Guest", role: "pelanggan" };
+    
+    // Tampilkan data ke profil di pojok kanan atas
+    const userNameEl = document.getElementById('userName');
+    const userRoleEl = document.getElementById('userRole');
+    const userAvatarEl = document.getElementById('userAvatar');
+
+    if (userNameEl) userNameEl.textContent = user.nama;
+    if (userRoleEl) userRoleEl.textContent = user.role;
+    if (userAvatarEl) userAvatarEl.textContent = user.nama.substring(0, 2).toUpperCase();
+
+    // 2. Logika Menyembunyikan Menu berdasarkan Role
+    const userRole = user.role.toLowerCase();
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    navLinks.forEach(link => {
+        const allowedRoles = link.getAttribute('data-roles');
+        
+        if (allowedRoles) {
+            // Jika role pengguna ada di daftar data-roles, tampilkan. Jika tidak, sembunyikan.
+            if (allowedRoles.includes(userRole)) {
+                link.style.display = 'flex'; // menggunakan flex agar tata letak ikon & teks tetap rapi
+            } else {
+                link.style.display = 'none';
+            }
+        }
+    });
+
+    // 3. Logika Fitur Logout
+    const logoutButton = document.getElementById('logoutButton');
+    
+    if (logoutButton) {
+        logoutButton.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const confirmLogout = confirm("Apakah Anda yakin ingin keluar dari aplikasi?");
+            if (!confirmLogout) return;
+
+            try {
+                // Memanggil endpoint backend untuk menghapus token/cookie
+                await fetch('/api/auth/logout', { method: 'POST' });
+            } catch (error) {
+                console.warn("Gagal terhubung ke server saat logout", error);
+            } finally {
+                // Hapus data pengguna di penyimpanan lokal browser
+                localStorage.removeItem('user');
+                localStorage.removeItem('token');
+                
+                // Kembalikan ke halaman login
+                window.location.href = '/login.html';
+            }
+        });
+    }
+});
