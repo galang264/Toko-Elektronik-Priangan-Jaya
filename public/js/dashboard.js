@@ -643,54 +643,6 @@ function productRows(items, canManage = true, canBuy = false) {
     .join('');
 }
 
-async function productRows(products, canManage, canBuy) {
-  const products = await loadProducts();
-  const canManage = ['owner', 'karyawan'].includes(currentUser.role);
-  const action = canManage
-    ? `<button class="button button-primary" id="addProductButton">${icon('plus')} Tambah produk</button>`
-    : '';
-
-  pageContent.innerHTML = `
-    ${pageTitle('Data produk', 'Kelola katalog, harga jual, kategori, dan jumlah stok.', action)}
-    <div class="toolbar">
-      <label class="search-box">${icon('search')}<input id="productSearch" type="search" placeholder="Cari nama atau kategori produk..."></label>
-      <span class="toolbar-meta" id="productCount">${number(products.length)} produk terdaftar</span>
-    </div>
-    <section class="table-card">
-      <div class="table-wrap">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Nama produk</th>
-              <th>Kategori</th>
-              <th>Harga jual</th>
-              <th>Stok</th>
-              <th>Status</th>
-              <th>Aksi</th>
-            </tr>
-          </thead>
-          <tbody id="productTableBody">${productRows(products, canManage, canBuy)}</tbody>
-        </table>
-      </div>
-      <div class="table-footer">
-        <span>${window.PJ_CONFIG?.demoMode ? 'Data contoh tersimpan lokal di browser' : 'Data ditampilkan dari database melalui API'}</span>
-        <span>${number(products.length)} item</span>
-      </div>
-    </section>
-  `;
-
-  $('#productSearch').addEventListener('input', (event) => {
-    const query = event.target.value.trim().toLowerCase();
-    const filtered = productCache.filter((item) =>
-      `${item.nama_produk} ${item.kategori || ''} ${item.ID_produk}`.toLowerCase().includes(query)
-    );
-    $('#productTableBody').innerHTML = productRows(filtered, canManage, canBuy);
-    $('#productCount').textContent = `${number(filtered.length)} produk ditemukan`;
-  });
-
-  $('#addProductButton')?.addEventListener('click', () => productDialog());
-}
-
 function renderCustomerCart() {
 
     const container = $('#customerCartLines');
@@ -1173,13 +1125,13 @@ function renderCart() {
 
 async function renderKasir() {
   const [products, transactions] = await Promise.all([
-      loadProducts(),
-      api('/transaksi')
+    loadProducts(),
+    api('/transaksi'),
   ]);
 
-  transactionCache = Array.isArray(transactions)
-      ? transactions
-      : [];
+  transactionCache = Array.isArray(transactions) ? transactions : [];
+  cart = [];
+  const availableProducts = products.filter((p) => Number(p.stok) > 0);
 
   pageContent.innerHTML = `
     ${pageTitle('Kasir penjualan', 'Pilih produk, masukkan data pelanggan, dan selesaikan pembayaran.')}
